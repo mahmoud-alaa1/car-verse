@@ -10,10 +10,10 @@
         "car-verse-backend"
       ],
       "source": [
-        "src/car-verse-frontend/dist"
+        "src/car-verse-frontend-v2/dist"
       ],
       "type": "assets",
-      "workspace": "car-verse-frontend"
+      "workspace": "car-verse-frontend-v2"
     }
   },
   "defaults": {
