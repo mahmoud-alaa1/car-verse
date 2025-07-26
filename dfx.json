@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "car-verse-backend": {
+      "candid": "src/car-verse-backend/car-verse-backend.did",
+      "package": "car-verse-backend",
+      "type": "rust"
+    },
+    "car-verse-frontend": {
+      "dependencies": [
+        "car-verse-backend"
+      ],
+      "source": [
+        "src/car-verse-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "car-verse-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

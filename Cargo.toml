@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/car-verse-backend"
+]
+resolver = "2"
