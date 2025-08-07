@@ -1,1 +1,6 @@
-service : { greet : (text) -> (text) query }
+service : {
+  get_balance : () -> (nat64) query;
+  greet : (text) -> (text) query;
+  set_balance : (nat64) -> (int32);
+  whoami : () -> (principal) query;
+}

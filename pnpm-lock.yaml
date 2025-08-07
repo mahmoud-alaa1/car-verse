@@ -1,0 +1,73 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@dfinity/agent':
+        specifier: ^3.1.0
+        version: 3.1.0(@dfinity/candid@3.1.0(@dfinity/principal@3.1.0))(@dfinity/principal@3.1.0)(@noble/hashes@1.8.0)
+      '@dfinity/candid':
+        specifier: ^3.1.0
+        version: 3.1.0(@dfinity/principal@3.1.0)
+      '@dfinity/principal':
+        specifier: ^3.1.0
+        version: 3.1.0
+
+packages:
+
+  '@dfinity/agent@3.1.0':
+    resolution: {integrity: sha512-4ktWU9KoB+Y0y84i0c2up9xmek2WjwSsbh4zGUK+o3VwZyqH8Cck4Fh4eiTa5jOve/vtfSVDbUVNFXsaS3Gttw==}
+    peerDependencies:
+      '@dfinity/candid': 3.1.0
+      '@dfinity/principal': 3.1.0
+      '@noble/hashes': ^1.8.0
+
+  '@dfinity/candid@3.1.0':
+    resolution: {integrity: sha512-YwZJROFmzPa4GCJJyGCoOYJ2pKmp9rboixGQSbLPekX0n0oU0mcEbuVKJFu6HY6CnoDoI8YKc9x+jlqh4n0u5A==}
+    peerDependencies:
+      '@dfinity/principal': 3.1.0
+
+  '@dfinity/cbor@0.2.2':
+    resolution: {integrity: sha512-GPJpH73kDEKbUBdUjY80lz7cq9l0vm1h/7ppejPV6O0ZTqCLrYspssYvqjRmK4aNnJ/SKXsP0rg9LYX7zpegaA==}
+
+  '@dfinity/principal@3.1.0':
+    resolution: {integrity: sha512-ef2JbgwQGtam0s19bH9CaR8ztpuoNx10eC6/kBjR/R8VC2eIBlaJHvD0lXDrBWGtOPZGzEy/XAugeBr3raxZ8A==}
+
+  '@noble/curves@1.9.6':
+    resolution: {integrity: sha512-GIKz/j99FRthB8icyJQA51E8Uk5hXmdyThjgQXRKiv9h0zeRlzSCLIzFw6K1LotZ3XuB7yzlf76qk7uBmTdFqA==}
+    engines: {node: ^14.21.3 || >=16}
+
+  '@noble/hashes@1.8.0':
+    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
+    engines: {node: ^14.21.3 || >=16}
+
+snapshots:
+
+  '@dfinity/agent@3.1.0(@dfinity/candid@3.1.0(@dfinity/principal@3.1.0))(@dfinity/principal@3.1.0)(@noble/hashes@1.8.0)':
+    dependencies:
+      '@dfinity/candid': 3.1.0(@dfinity/principal@3.1.0)
+      '@dfinity/cbor': 0.2.2
+      '@dfinity/principal': 3.1.0
+      '@noble/curves': 1.9.6
+      '@noble/hashes': 1.8.0
+
+  '@dfinity/candid@3.1.0(@dfinity/principal@3.1.0)':
+    dependencies:
+      '@dfinity/principal': 3.1.0
+
+  '@dfinity/cbor@0.2.2': {}
+
+  '@dfinity/principal@3.1.0':
+    dependencies:
+      '@noble/hashes': 1.8.0
+
+  '@noble/curves@1.9.6':
+    dependencies:
+      '@noble/hashes': 1.8.0
+
+  '@noble/hashes@1.8.0': {}
