@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { car_verse_backend } from '../../declarations/car-verse-backend/index.js';
+import { backend } from '../../declarations/backend/index.js';
 
 function App() {
   const [greeting, setGreeting] = useState('');
@@ -8,13 +8,13 @@ function App() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    car_verse_backend.greet(name).then((greeting) => {
+    backend.greet(name).then((greeting: string) => {
       setGreeting(greeting);
     });
     return false;
   }
   useEffect(() => {
-    console.log("car_verse_backend:", car_verse_backend);
+    console.log("car_verse_backend:", backend);
   }, []);
 
   return (

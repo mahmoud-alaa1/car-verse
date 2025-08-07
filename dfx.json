@@ -1,19 +1,19 @@
 {
   "canisters": {
-    "car-verse-backend": {
-      "candid": "src/car-verse-backend/car-verse-backend.did",
-      "package": "car-verse-backend",
+    "backend": {
+      "candid": "src/backend/backend.did",
+      "package": "backend",
       "type": "rust"
     },
-    "car-verse-frontend": {
+    "frontend": {
       "dependencies": [
-        "car-verse-backend"
+        "backend"
       ],
       "source": [
-        "src/car-verse-frontend-v2/dist"
+        "src/frontend/dist"
       ],
       "type": "assets",
-      "workspace": "car-verse-frontend-v2"
+      "workspace": "frontend"
     }
   },
   "defaults": {
