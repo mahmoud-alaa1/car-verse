@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { backend } from '../../declarations/backend/index.js';
+import { createActor, canisterId } from '../../declarations/backend';
 
 function App() {
   const [balance, setBalance] = useState('');
   const [name, setName] = useState('');
   const [greeting, setGreeting] = useState('');
   const [newBalance, setNewBalance] = useState('');
+  const backend = createActor(canisterId);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
