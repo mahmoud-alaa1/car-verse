@@ -2,14 +2,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import dotenv from 'dotenv'
-import { fileURLToPath, URL } from 'url'
+import tailwindcss from "@tailwindcss/vite"
+import path from "path"
 
 // Load env vars
 dotenv.config({ path: '../../.env' })
 
 export default defineConfig({
   envPrefix: ['CANISTER_', 'DFX_'],
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     proxy: {
       '/api': {
@@ -17,17 +18,20 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    watch: {
+      usePolling: true,
+      interval: 100, // check every 100ms
+    },
   },
   build: {
     emptyOutDir: true,
   },
   resolve: {
-    alias: [
-      {
-        find: 'declarations',
-        replacement: fileURLToPath(new URL('../declarations', import.meta.url)),
-      },
-    ],
+    alias: {
+
+      "@": path.resolve(__dirname, "./src"),
+
+    },
     dedupe: ['@dfinity/agent'],
   },
   optimizeDeps: {

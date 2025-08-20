@@ -9,6 +9,7 @@
     "prebuild": "npm run prebuild --workspaces --if-present",
     "pretest": "npm run prebuild --workspaces --if-present",
     "start": "npm start --workspaces --if-present",
+    "dev": "npm run dev --workspaces --if-present",
     "test": "npm test --workspaces --if-present"
   },
   "type": "module",
@@ -19,5 +20,8 @@
     "@dfinity/agent": "^3.1.0",
     "@dfinity/candid": "^3.1.0",
     "@dfinity/principal": "^3.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
   }
 }
