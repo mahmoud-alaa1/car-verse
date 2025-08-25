@@ -1,44 +1,27 @@
-// vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import dotenv from 'dotenv'
-import tailwindcss from "@tailwindcss/vite"
-import path from "path"
+// import { defineConfig } from ".pnpm/vite@5.4.19_@types+node@22.18.0/node_modules/vite";
+// import react from ".pnpm/@vitejs+plugin-react-swc@3.11.0_vite@5.4.19_@types+node@22.18.0_/node_modules/@vitejs/plugin-react-swc";
+// import path from "path";
+// import { componentTagger } from ".pnpm/lovable-tagger@1.1.9_vite@5.4.19_@types+node@22.18.0_/node_modules/lovable-tagger";
 
-// Load env vars
-dotenv.config({ path: '../../.env' })
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import { componentTagger } from 'lovable-tagger';
+import path from 'path';
 
-export default defineConfig({
-  envPrefix: ['CANISTER_', 'DFX_'],
-  plugins: [react(), tailwindcss()],
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
   server: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:4943',
-        changeOrigin: true,
-      },
-    },
-    watch: {
-      usePolling: true,
-      interval: 100, // check every 100ms
-    },
+    host: "::",
+    port: 8080,
   },
-  build: {
-    emptyOutDir: true,
-  },
+  plugins: [
+    react(),
+    mode === 'development' &&
+    componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
-
       "@": path.resolve(__dirname, "./src"),
-
-    },
-    dedupe: ['@dfinity/agent'],
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      define: {
-        global: 'globalThis',
-      },
     },
   },
-})
+}));

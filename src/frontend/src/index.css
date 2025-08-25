@@ -1,162 +1,325 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
 
-body {
-  font-family: sans-serif;
-  font-size: 1.5rem;
-}
+@layer base {
+  :root {
+    /* Automotive-inspired color palette */
+    --background: 0 0% 98%;
+    --foreground: 210 15% 15%;
 
-img {
-  max-width: 50vw;
-  max-height: 25vw;
-  display: block;
-  margin: auto;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 15%;
 
-form {
-  display: flex;
-  justify-content: center;
-  gap: 0.5em;
-  flex-flow: row wrap;
-  max-width: 40vw;
-  margin: auto;
-  align-items: baseline;
-}
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 15%;
 
-button[type="submit"] {
-  padding: 5px 20px;
-  margin: 10px auto;
-  float: right;
-}
+    /* Deep automotive blue as primary */
+    --primary: 215 85% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 85% 30%;
 
-#greeting {
-  margin: 10px auto;
-  padding: 10px 60px;
-  border: 1px solid #222;
-}
+    /* Racing red accent */
+    --accent-racing: 0 85% 55%;
+    --accent-racing-foreground: 0 0% 100%;
 
-#greeting:empty {
-  display: none;
-}
+    /* Electric blue accent */
+    --accent-electric: 195 100% 50%;
+    --accent-electric-foreground: 0 0% 100%;
 
-.browser-warning {
-  display: none;
-}
+    --secondary: 210 15% 96%;
+    --secondary-foreground: 210 15% 25%;
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
+    --muted: 210 15% 95%;
+    --muted-foreground: 210 10% 50%;
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+    --accent: 210 15% 94%;
+    --accent-foreground: 210 15% 25%;
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 90%;
+    --input: 210 15% 92%;
+    --ring: 215 85% 35%;
+
+    /* Automotive gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 85% 35%), hsl(215 85% 45%));
+    --gradient-racing: linear-gradient(135deg, hsl(0 85% 55%), hsl(15 85% 60%));
+    --gradient-electric: linear-gradient(135deg, hsl(195 100% 50%), hsl(210 100% 55%));
+    --gradient-metallic: linear-gradient(135deg, hsl(210 15% 88%), hsl(210 15% 92%));
+
+    /* Shadows with automotive feel */
+    --shadow-card: 0 4px 20px -4px hsl(215 25% 25% / 0.15);
+    --shadow-hover: 0 8px 32px -4px hsl(215 25% 25% / 0.25);
+    --shadow-racing: 0 8px 32px -4px hsl(0 85% 55% / 0.3);
+
+    /* Typography */
+    --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Sophisticated dark theme with automotive luxury feel */
+    --background: 215 25% 8%;
+    --foreground: 210 15% 92%;
+
+    --card: 215 20% 12%;
+    --card-foreground: 210 15% 95%;
+
+    --popover: 215 20% 10%;
+    --popover-foreground: 210 15% 95%;
+
+    /* Bright automotive blue for dark mode */
+    --primary: 195 100% 65%;
+    --primary-foreground: 215 25% 8%;
+    --primary-hover: 195 100% 55%;
+
+    /* Enhanced racing red for dark mode */
+    --accent-racing: 0 90% 65%;
+    --accent-racing-foreground: 0 0% 100%;
+
+    /* Brighter electric blue for dark mode */
+    --accent-electric: 180 100% 60%;
+    --accent-electric-foreground: 0 0% 100%;
+
+    --secondary: 215 15% 18%;
+    --secondary-foreground: 210 15% 88%;
+
+    --muted: 215 15% 15%;
+    --muted-foreground: 210 10% 65%;
+
+    --accent: 215 15% 16%;
+    --accent-foreground: 210 15% 90%;
+
+    --destructive: 0 75% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 15% 20%;
+    --input: 215 15% 16%;
+    --ring: 195 100% 65%;
+
+    /* Enhanced dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195 100% 65%), hsl(210 100% 70%));
+    --gradient-racing: linear-gradient(135deg, hsl(0 90% 65%), hsl(15 90% 70%));
+    --gradient-electric: linear-gradient(135deg, hsl(180 100% 60%), hsl(195 100% 65%));
+    --gradient-metallic: linear-gradient(135deg, hsl(215 15% 22%), hsl(215 15% 18%));
+    --gradient-background: linear-gradient(135deg, hsl(215 25% 8%), hsl(215 20% 10%));
+
+    /* Enhanced shadows for dark mode */
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.6);
+    --shadow-hover: 0 16px 48px -8px hsl(0 0% 0% / 0.8);
+    --shadow-glow: 0 0 40px hsl(195 100% 65% / 0.3);
+    --shadow-racing-glow: 0 0 40px hsl(0 90% 65% / 0.3);
+
+    --sidebar-background: 215 20% 10%;
+    --sidebar-foreground: 210 15% 88%;
+    --sidebar-primary: 195 100% 65%;
+    --sidebar-primary-foreground: 215 25% 8%;
+    --sidebar-accent: 215 15% 14%;
+    --sidebar-accent-foreground: 210 15% 88%;
+    --sidebar-border: 215 15% 18%;
+    --sidebar-ring: 195 100% 65%;
+  }
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-[var(--font-body)];
+  }
+}
+
+@layer components {
+  /* Enhanced background patterns */
+  .bg-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--accent-racing) / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(var(--accent-electric) / 0.06) 0%, transparent 50%);
+  }
+
+  .bg-gradient-page {
+    background: var(--gradient-background);
+  }
+
+  /* Card styles with automotive feel */
+  .card-automotive {
+    @apply bg-card rounded-lg shadow-[var(--shadow-card)] border border-border backdrop-blur-sm;
+  }
+  
+  .card-automotive:hover {
+    @apply shadow-[var(--shadow-hover)] transition-all duration-300 transform scale-[1.02];
+  }
+
+  .card-glow {
+    @apply shadow-[var(--shadow-glow)] transition-all duration-300;
+  }
+
+  .card-racing-glow {
+    @apply shadow-[var(--shadow-racing-glow)] transition-all duration-300;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: var(--gradient-primary);
+    @apply shadow-[var(--shadow-glow)];
+  }
+  
+  .gradient-racing {
+    background: var(--gradient-racing);
+    @apply shadow-[var(--shadow-racing-glow)];
+  }
+  
+  .gradient-electric {
+    background: var(--gradient-electric);
+    @apply shadow-[var(--shadow-glow)];
+  }
+  
+  .gradient-metallic {
+    background: var(--gradient-metallic);
+  }
+
+  /* Special button effects */
+  .btn-glow {
+    @apply transition-all duration-300 hover:shadow-[var(--shadow-glow)] hover:scale-105;
+  }
+
+  .btn-racing-glow {
+    @apply transition-all duration-300 hover:shadow-[var(--shadow-racing-glow)] hover:scale-105;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border border-border/50;
+  }
+
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-lg border border-border/30 shadow-2xl;
+  }
+
+  /* Racing accent utilities */
+  .text-racing {
+    color: hsl(var(--accent-racing));
+  }
+  
+  .bg-racing {
+    background-color: hsl(var(--accent-racing));
+  }
+  
+  .border-racing {
+    border-color: hsl(var(--accent-racing));
+  }
+
+  /* Electric accent utilities */
+  .text-electric {
+    color: hsl(var(--accent-electric));
+  }
+  
+  .bg-electric {
+    background-color: hsl(var(--accent-electric));
+  }
+
+  /* Enhanced animations */
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }

@@ -13,7 +13,8 @@
         "src/frontend/dist"
       ],
       "type": "assets",
-      "workspace": "frontend"
+      "workspace": "frontend",
+      "build": "pnpm run build"
     }
   },
   "defaults": {

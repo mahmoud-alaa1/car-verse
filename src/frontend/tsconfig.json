@@ -9,11 +9,17 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "../../../../ztry/save/frontend",
     "paths": {
       "@/*": [
-        "./src/*"
+        "../../../../ztry/save/frontend/src/*"
       ]
-    }
+    },
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noUnusedLocals": false,
+    "strictNullChecks": false
   }
 }
