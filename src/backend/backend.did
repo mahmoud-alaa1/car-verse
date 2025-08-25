@@ -1,6 +1,73 @@
+type CarInfo = record {
+  id : nat64;
+  model : text;
+  owner : principal;
+  make : text;
+  year : nat16;
+  description : text;
+};
+type Group = record {
+  id : nat64;
+  members : vec principal;
+  posts : opt vec nat64;
+  profile : GroupProfile;
+};
+type GroupProfile = record {
+  country : opt text;
+  name : text;
+  description : opt text;
+  category : opt text;
+};
+type Post = record {
+  id : nat64;
+  content : text;
+  author : principal;
+  likes : vec principal;
+  group_id : nat64;
+};
+type Result = variant { Ok; Err : text };
+type Result_1 = variant { Ok : int32; Err : text };
+type Result_2 = variant { Ok : nat64; Err : text };
+type Result_3 = variant { Ok : CarInfo; Err : text };
+type User = record {
+  id : principal;
+  age : opt int32;
+  groups : opt vec nat64;
+  username : opt text;
+  likes : opt vec nat64;
+  gender : opt bool;
+  posts : opt vec nat64;
+  friends : vec principal;
+  profile : UserProfile;
+};
+type UserProfile = record {
+  bio : opt text;
+  country : opt text;
+  email : opt text;
+  phone : opt text;
+};
 service : {
-  get_balance : () -> (nat64) query;
-  greet : (text) -> (text) query;
-  set_balance : (nat64) -> (int32);
-  whoami : () -> (principal) query;
+  create_carinfo : (text, text, nat16, text) -> (nat64);
+  create_group : (text) -> (nat64);
+  create_post : (text, nat64) -> (nat64);
+  get_carinfo : (nat64) -> (opt CarInfo) query;
+  get_group : (nat64) -> (opt Group) query;
+  get_group_posts : (nat64) -> (opt vec Post) query;
+  get_post : (nat64) -> (opt Post) query;
+  get_profile : () -> (UserProfile) query;
+  get_user : () -> (opt User) query;
+  join_group : (nat64) -> (Result);
+  leave_group : (nat64) -> (Result);
+  like_post : (nat64) -> (Result);
+  list_carinfos : () -> (vec CarInfo) query;
+  list_groups : () -> (vec Group) query;
+  login : () -> (int32);
+  set_basic_user : (opt text, opt int32, opt bool) -> (Result_1);
+  show_likes : (nat64) -> (Result_2) query;
+  unlike_post : (nat64) -> (Result);
+  update_carinfo : (nat64, opt text, opt text, opt nat16, opt text) -> (
+      Result_3,
+    );
+  update_group_profile : (nat64, GroupProfile) -> (Result);
+  update_profile : (opt text, opt text, opt text, opt text) -> (Result_1);
 }
