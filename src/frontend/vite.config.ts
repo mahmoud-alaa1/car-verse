@@ -1,15 +1,32 @@
-// import { defineConfig } from ".pnpm/vite@5.4.19_@types+node@22.18.0/node_modules/vite";
-// import react from ".pnpm/@vitejs+plugin-react-swc@3.11.0_vite@5.4.19_@types+node@22.18.0_/node_modules/@vitejs/plugin-react-swc";
+// import { defineConfig } from "vite";
+// import react from "@vitejs/plugin-react-swc";
 // import path from "path";
-// import { componentTagger } from ".pnpm/lovable-tagger@1.1.9_vite@5.4.19_@types+node@22.18.0_/node_modules/lovable-tagger";
+// import { componentTagger } from "lovable-tagger";
 
+// // https://vitejs.dev/config/
+// export default defineConfig(({ mode }) => ({
+//   server: {
+//     host: "::",
+//     port: 8080,
+//   },
+//   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+//   resolve: {
+//     alias: {
+//       "@": path.resolve(__dirname, "./src"),
+//     },
+//   },
+// }));
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { componentTagger } from 'lovable-tagger';
 import path from 'path';
+//import dotenv from "dotenv";
+import EnvironmentPlugin from 'vite-plugin-environment';
+import { fileURLToPath, URL } from "url";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: "./",
+
   server: {
     host: "::",
     port: 8080,
@@ -18,10 +35,29 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'development' &&
     componentTagger(),
+    // environment("all", { prefix: "CANISTER_" }),
+    // environment("all", { prefix: "DFX_" }),
+    EnvironmentPlugin("all", { prefix: "CANISTER_" }),
+    EnvironmentPlugin("all", { prefix: "DFX_" }),
   ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+  envDir: "../",
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: "globalThis",
+      },
     },
+  },
+  resolve: {
+    alias: [
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, './src')
+      },
+      {
+        find: "declarations",
+        replacement: fileURLToPath(new URL("../declarations", import.meta.url)),
+      },
+    ]
   },
 }));
